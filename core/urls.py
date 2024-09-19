@@ -1,5 +1,5 @@
 """
-URL configuration for django_smart_fixtures project.
+URL configuration for django-smart-fixtures project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/

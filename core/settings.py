@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_smart_fixtures',
+
+    'dummy',
 ]
 
 MIDDLEWARE = [
@@ -117,3 +119,24 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT = BASE_DIR / 'media'
+
+MEDIA_URL = '/media/'
+
+FIXTURES = {
+    'labels': [
+        'first_dummies',
+        'second_dummies',
+    ],
+    'images_dirs': [
+        {
+            'src': BASE_DIR / 'dummy' / 'fixtures' / 'images',
+            'dest': MEDIA_ROOT / 'dummy' / 'images',
+        },
+        {
+            'src': BASE_DIR / 'dummy' / 'fixtures' / 'files',
+            'dest': MEDIA_ROOT / 'dummy' / 'files',
+        },
+    ],
+}

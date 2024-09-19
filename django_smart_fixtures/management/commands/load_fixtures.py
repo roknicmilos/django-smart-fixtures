@@ -21,12 +21,12 @@ class Command(BaseCommand):
             'labels': [ 'fixtures1', 'fixtures2' ]
             'images_dirs': [
                 {
-                    'src': BASE_DIR / 'my_app' / 'fixtures' / 'img',
-                    'dest': BASE_DIR / 'media' / 'my_app' / 'img',
+                    'src': BASE_DIR / 'my_app' / 'fixtures' / 'images',
+                    'dest': BASE_DIR / 'media' / 'my_app' / 'images',
                 },
                 {
-                    'src': BASE_DIR / 'my_other_app' / 'fixtures' / 'img',
-                    'dest': BASE_DIR / 'media' / 'my_other_app' / 'img',
+                    'src': BASE_DIR / 'my_other_app' / 'fixtures' / 'files',
+                    'dest': BASE_DIR / 'media' / 'my_other_app' / 'files',
                 },
             ],
         }

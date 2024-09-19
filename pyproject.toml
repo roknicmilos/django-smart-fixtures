@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "django-smart-fixtures"
+version = "0.0.0"
+description = "Don't be stupid, and load fixtures in a smart way"
+authors = ["Miloš Roknić <roknic.milos.994@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+Django = "^5.1.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

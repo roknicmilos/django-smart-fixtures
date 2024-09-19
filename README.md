@@ -1,0 +1,13 @@
+- TODO: About project
+    - Easy media upload (images, files, etc.)
+    - Load multiple fixtures without passing their labels to the command
+    - Configure the fixtures to load in the settings
+- TODO: Create metadata for the package (README.md, LICENSE, etc.)
+    - Add this "about" to the metadata.README.md
+    - Installation instructions
+        - Add to INSTALLED_APPS
+    - Media files in fixtures:
+        - Provide file destination path in fixture files
+        - Provide folder destination path in settings that must be the same as
+          the fixture file path
+        - Provide fixture media files folder path in settings

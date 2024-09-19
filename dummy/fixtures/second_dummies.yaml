@@ -1,0 +1,6 @@
+- model: dummy.SecondDummy
+  pk: 1
+  fields:
+    name: Second Dummy A
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    file: dummy/files/sample.pdf

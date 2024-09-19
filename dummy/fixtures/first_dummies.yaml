@@ -1,0 +1,20 @@
+- model: dummy.FirstDummy
+  pk: 1
+  fields:
+    name: First Dummy A
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    image: dummy/images/java-hate.png
+
+- model: dummy.FirstDummy
+  pk: 2
+  fields:
+    name: First Dummy B
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    image: dummy/images/ai-generated-code.png
+
+- model: dummy.FirstDummy
+  pk: 3
+  fields:
+    name: First Dummy C
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    image: dummy/images/commit-message.png

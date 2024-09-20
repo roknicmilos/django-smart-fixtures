@@ -1,0 +1,22 @@
+# Include all files from the django_smart_fixtures package
+graft django_smart_fixtures
+
+# Exclude the tests file
+exclude django_smart_fixtures/tests.py
+
+# Exclude specific directories and files that should not be part of the package
+prune dummy
+prune core
+prune media
+prune htmlcov
+
+# Exclude specific file types that are not needed
+exclude *.pyc
+exclude *.pyo
+exclude .coverage
+exclude db.sqlite3
+exclude .gitignore
+exclude MANIFEST.in
+exclude poetry.lock
+exclude pyproject.toml
+exclude tox.ini

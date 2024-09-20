@@ -161,7 +161,7 @@ class TestLoadFixturesCommand(TestCase):
 
         self.mock_write.reset_mock()
 
-        with override_settings(FIXTURES={"still": "invalid"}):
+        with override_settings(FIXTURES={'still': 'invalid'}):
             call_command('load_fixtures')
         self.mock_call_command.assert_not_called()
         self.mock_makedirs.assert_not_called()

@@ -1,7 +1,9 @@
 - TODO: About project
+    - Uses `loaddata` command under the hood to load fixtures
     - Easy media upload (images, files, etc.)
     - Load multiple fixtures without passing their labels to the command
     - Configure the fixtures to load in the settings
+    - Diff between this project and published package
 - TODO: Create metadata for the package (README.md, LICENSE, etc.)
     - Add this "about" to the metadata.README.md
     - Installation instructions
@@ -11,3 +13,5 @@
         - Provide folder destination path in settings that must be the same as
           the fixture file path
         - Provide fixture media files folder path in settings
+- TODO: Why `.yml` file extension doesn't work, and `.yaml` does?
+    - Leave a note in the README.md about this

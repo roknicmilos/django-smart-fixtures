@@ -18,7 +18,7 @@ class Command(BaseCommand):
 
     Settings example with image directories:
         FIXTURES = {
-            'labels': [ 'fixtures1', 'fixtures2' ]
+            'labels': ['fixtures1', 'fixtures2'],
             'images_dirs': [
                 {
                     'src': BASE_DIR / 'my_app' / 'fixtures' / 'images',

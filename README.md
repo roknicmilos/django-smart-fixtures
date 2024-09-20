@@ -12,6 +12,23 @@ thing you need to do is to configure the fixtures to load in the settings.
 Ah, yes... and it also allows you to **easily upload media files** (images,
 files, etc.) from the fixtures.
 
+## Installation
+
+```bash
+pip install django-smart-fixtures
+```
+
+Add `django_smart_fixtures` to your `INSTALLED_APPS`:
+
+```python
+INSTALLED_APPS = [
+    ...
+    'django_smart_fixtures',
+    ...
+]
+```
+
+
 ## Configuration
 
 Let's say you have the following fixtures:

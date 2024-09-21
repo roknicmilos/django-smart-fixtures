@@ -47,7 +47,7 @@ class TestLoadFixturesCommand(TestCase):
 
     @override_settings(FIXTURES={
         'labels': ['portfolio', 'link', 'skill'],
-        'images_dirs': [
+        'media': [
             {'src': 'path/to/src1', 'dest': 'path/to/dest1'},
             {'src': 'path/to/src2', 'dest': 'path/to/dest2'}
         ]
@@ -100,7 +100,7 @@ class TestLoadFixturesCommand(TestCase):
 
     @override_settings(FIXTURES={
         'labels': ['portfolio', 'link', 'skill'],
-        'images_dirs': [
+        'media': [
             {'src': 'path/to/src1', 'dest': 'path/to/dest1'}
         ]
     })
@@ -125,7 +125,7 @@ class TestLoadFixturesCommand(TestCase):
     @override_settings(FIXTURES={
         'labels': ['portfolio', 'link', 'skill'],
     })
-    def test_handle_without_specified_images_dirs(self):
+    def test_handle_without_specified_media(self):
         call_command('load_fixtures')
 
         self.mock_call_command.assert_called_once_with(

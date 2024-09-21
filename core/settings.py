@@ -123,7 +123,7 @@ FIXTURES = {
         'first_dummies',
         'second_dummies',
     ],
-    'images_dirs': [
+    'media': [
         {
             'src': BASE_DIR / 'dummy' / 'fixtures' / 'images',
             'dest': MEDIA_ROOT / 'dummy' / 'images',

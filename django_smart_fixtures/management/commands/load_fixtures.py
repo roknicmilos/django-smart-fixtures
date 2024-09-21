@@ -19,7 +19,7 @@ class Command(BaseCommand):
     Settings example with image directories:
         FIXTURES = {
             'labels': ['fixtures1', 'fixtures2'],
-            'images_dirs': [
+            'media': [
                 {
                     'src': BASE_DIR / 'my_app' / 'fixtures' / 'images',
                     'dest': BASE_DIR / 'media' / 'my_app' / 'images',
@@ -55,7 +55,7 @@ class Command(BaseCommand):
         )
 
     def _upload_media_files(self):
-        for images_dir in settings.FIXTURES.get('images_dirs', []):
+        for images_dir in settings.FIXTURES.get('media', []):
             src_dir = images_dir['src']
             dest_dir = images_dir['dest']
             # Ensure the destination directory exists

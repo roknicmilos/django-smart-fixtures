@@ -60,7 +60,7 @@ FIXTURES = {
         'fixtures2',
         'fixtures3',
     ],
-    'images_dirs': [
+    'media': [
         {
             'src': BASE_DIR / 'my_app' / 'fixtures' / 'images',
             'dest': BASE_DIR / 'media' / 'my_app' / 'images',

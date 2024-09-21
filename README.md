@@ -66,11 +66,11 @@ FIXTURES = {
     'media': [
         {
             'src': BASE_DIR / 'my_app' / 'fixtures' / 'images',
-            'dest': BASE_DIR / MEDIA_ROOT / 'my_app' / 'images',
+            'dest': MEDIA_ROOT / 'my_app' / 'images',
         },
         {
             'src': BASE_DIR / 'my_other_app' / 'fixtures' / 'files',
-            'dest': BASE_DIR / MEDIA_ROOT / 'my_other_app' / 'files',
+            'dest': MEDIA_ROOT / 'my_other_app' / 'files',
         },
     ],
 }

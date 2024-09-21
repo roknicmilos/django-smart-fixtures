@@ -145,6 +145,26 @@ If you're defining fixtures in YAML files, make sure to use `.yaml` extension
 instead of `.yml` for the fixture files because Django's `loaddata` command does
 not support `.yml` files.
 
+## Publishing to PyPI
+
+To publish the package to PyPI, follow these steps:
+
+1. Update the version in the `pyproject.toml` file.
+2. Build the package:
+    ```bash
+    poetry build
+    ```
+3. Configure your PyPI credentials (if you haven't already):
+
+    ```bash
+    poetry config pypi-token.pypi <your-pypi-token>
+    ```
+4. Publish the package:
+
+    ```bash
+    poetry publish
+    ```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file

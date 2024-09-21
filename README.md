@@ -1,3 +1,5 @@
+from core.settings import MEDIA_ROOTfrom core.settings import MEDIA_ROOT
+
 # Django Smart Fixtures
 
 **DON'T BE STUPID, AND LOAD FIXTURES IN A SMART WAY!**
@@ -64,11 +66,11 @@ FIXTURES = {
     'media': [
         {
             'src': BASE_DIR / 'my_app' / 'fixtures' / 'images',
-            'dest': BASE_DIR / 'media' / 'my_app' / 'images',
+            'dest': BASE_DIR / MEDIA_ROOT / 'my_app' / 'images',
         },
         {
             'src': BASE_DIR / 'my_other_app' / 'fixtures' / 'files',
-            'dest': BASE_DIR / 'media' / 'my_other_app' / 'files',
+            'dest': BASE_DIR / MEDIA_ROOT / 'my_other_app' / 'files',
         },
     ],
 }

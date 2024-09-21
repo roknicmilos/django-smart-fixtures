@@ -22,11 +22,11 @@ class Command(BaseCommand):
             'media': [
                 {
                     'src': BASE_DIR / 'my_app' / 'fixtures' / 'images',
-                    'dest': BASE_DIR / 'media' / 'my_app' / 'images',
+                    'dest': BASE_DIR / MEDIA_ROOT / 'my_app' / 'images',
                 },
                 {
                     'src': BASE_DIR / 'my_other_app' / 'fixtures' / 'files',
-                    'dest': BASE_DIR / 'media' / 'my_other_app' / 'files',
+                    'dest': BASE_DIR / MEDIA_ROOT / 'my_other_app' / 'files',
                 },
             ],
         }

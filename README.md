@@ -1,5 +1,3 @@
-from core.settings import MEDIA_ROOTfrom core.settings import MEDIA_ROOT
-
 # Django Smart Fixtures
 
 **DON'T BE STUPID, AND LOAD FIXTURES IN A SMART WAY!**

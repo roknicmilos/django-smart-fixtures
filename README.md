@@ -20,12 +20,12 @@ pip install django-smart-fixtures
 
 ## Configuration
 
-Add `django_smart_fixtures` to your `INSTALLED_APPS`:
+Add `smart_fixtures` to your `INSTALLED_APPS`:
 
 ```python
 INSTALLED_APPS = [
     ...
-    'django_smart_fixtures',
+    'smart_fixtures',
     ...
 ]
 ```

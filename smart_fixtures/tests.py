@@ -11,31 +11,31 @@ class TestLoadFixturesCommand(TestCase):
         super().setUp()
 
         self.copy_patcher = patch(
-            'django_smart_fixtures.management.commands.'
+            'smart_fixtures.management.commands.'
             'load_fixtures.shutil.copy'
         )
         self.mock_copy = self.copy_patcher.start()
 
         self.listdir_patcher = patch(
-            'django_smart_fixtures.management.commands.'
+            'smart_fixtures.management.commands.'
             'load_fixtures.os.listdir'
         )
         self.mock_listdir = self.listdir_patcher.start()
 
         self.makedirs_patcher = patch(
-            'django_smart_fixtures.management.commands.'
+            'smart_fixtures.management.commands.'
             'load_fixtures.os.makedirs'
         )
         self.mock_makedirs = self.makedirs_patcher.start()
 
         self.isfile_patcher = patch(
-            'django_smart_fixtures.management.commands.'
+            'smart_fixtures.management.commands.'
             'load_fixtures.os.path.isfile',
         )
         self.mock_isfile = self.isfile_patcher.start()
 
         self.call_command_patcher = patch(
-            'django_smart_fixtures.management.commands.'
+            'smart_fixtures.management.commands.'
             'load_fixtures.call_command'
         )
         self.mock_call_command = self.call_command_patcher.start()

@@ -35,10 +35,20 @@ class TestLoadDataCommand(TestCase):
         )
         self.mock_base_handle = self.base_handle_patcher.start()
 
-        self.mock_write_patcher = patch(
+        self.write_patcher = patch(
             'django.core.management.base.OutputWrapper.write'
         )
-        self.mock_write = self.mock_write_patcher.start()
+        self.mock_write = self.write_patcher.start()
+
+        self.mocked_copied_files_message = 'Copied files message'
+        self.create_copied_files_message_patcher = patch(
+            'smart_fixtures.management.commands.loaddata'
+            '.create_copied_files_message',
+            return_value=self.mocked_copied_files_message
+        )
+        self.mock_create_copied_files_message = (
+            self.create_copied_files_message_patcher.start()
+        )
 
     @override_settings(FIXTURES={
         'labels': ['portfolio', 'link', 'skill'],
@@ -85,10 +95,7 @@ class TestLoadDataCommand(TestCase):
             )
         ])
         self.mock_write.assert_called_once_with(
-            'Successfully copied files:\n'
-            '1. path/to/src1/image1.jpg -> path/to/dest1/image1.jpg\n'
-            '2. path/to/src1/image2.png -> path/to/dest1/image2.png\n'
-            '3. path/to/src2/image4.png -> path/to/dest2/image4.png\n'
+            self.mocked_copied_files_message
         )
 
     @override_settings(FIXTURES={
@@ -111,7 +118,9 @@ class TestLoadDataCommand(TestCase):
             exist_ok=True
         )
         self.mock_copy.assert_not_called()
-        self.mock_write.assert_called_once_with('No media files were copied')
+        self.mock_write.assert_called_once_with(
+            self.mocked_copied_files_message
+        )
 
     @override_settings(FIXTURES={
         'labels': ['portfolio', 'link', 'skill'],
@@ -123,7 +132,9 @@ class TestLoadDataCommand(TestCase):
         self.assertEqual(call_args, ('portfolio', 'link', 'skill'))
         self.mock_makedirs.assert_not_called()
         self.mock_copy.assert_not_called()
-        self.mock_write.assert_called_once_with('No media files were copied')
+        self.mock_write.assert_called_once_with(
+            self.mocked_copied_files_message
+        )
 
     @override_settings(FIXTURES=None)
     def test_handle_with_invalid_fixtures_setting_variable(self):
@@ -167,4 +178,5 @@ class TestLoadDataCommand(TestCase):
         self.makedirs_patcher.stop()
         self.isfile_patcher.stop()
         self.base_handle_patcher.stop()
-        self.mock_write_patcher.stop()
+        self.write_patcher.stop()
+        self.create_copied_files_message_patcher.stop()

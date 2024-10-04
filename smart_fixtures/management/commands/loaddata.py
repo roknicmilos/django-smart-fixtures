@@ -5,6 +5,8 @@ from django.conf import settings
 from django.core.management.commands.loaddata import Command as LoadDataCommand
 from django.db import DEFAULT_DB_ALIAS, connections
 
+from smart_fixtures.utils import create_copied_files_message
+
 
 class Command(LoadDataCommand):
     """
@@ -142,33 +144,4 @@ class Command(LoadDataCommand):
                     shutil.copy(src_file, dest_file)
                     copied_files.append((src_file, dest_file))
 
-        if copied_files:
-            self._print_copied_files(copied_files)
-        else:
-            self.stdout.write('No media files were copied')
-
-    def _print_copied_files(
-        self, file_path_pairs: list[tuple[str, str]]
-    ) -> None:
-        copied_files_display = [
-            f'{index + 1}. {relative_src} -> {relative_dest}\n'
-            for index, (relative_src, relative_dest)
-            in enumerate([
-                (
-                    self._get_relative_path(src),
-                    self._get_relative_path(dest)
-                ) for src, dest in file_path_pairs
-            ])
-        ]
-        self.stdout.write(
-            f'Successfully copied files:\n{"".join(copied_files_display)}'
-        )
-
-    @staticmethod
-    def _get_relative_path(absolute_path: str) -> str:
-        relative_path = absolute_path.replace(str(settings.BASE_DIR), '')
-        return (
-            relative_path[1:]
-            if relative_path.startswith('/')
-            else relative_path
-        )
+        self.stdout.write(create_copied_files_message(copied_files))

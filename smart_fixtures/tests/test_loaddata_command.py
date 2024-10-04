@@ -5,7 +5,7 @@ from django.core.management import call_command
 from django.test import TestCase, override_settings
 
 
-class TestLoadFixturesCommand(TestCase):
+class TestLoadDataCommand(TestCase):
 
     def setUp(self):
         super().setUp()
@@ -111,7 +111,7 @@ class TestLoadFixturesCommand(TestCase):
             exist_ok=True
         )
         self.mock_copy.assert_not_called()
-        self.mock_write.assert_called_once_with('No media files to copy')
+        self.mock_write.assert_called_once_with('No media files were copied')
 
     @override_settings(FIXTURES={
         'labels': ['portfolio', 'link', 'skill'],
@@ -123,7 +123,7 @@ class TestLoadFixturesCommand(TestCase):
         self.assertEqual(call_args, ('portfolio', 'link', 'skill'))
         self.mock_makedirs.assert_not_called()
         self.mock_copy.assert_not_called()
-        self.mock_write.assert_called_once_with('No media files to copy')
+        self.mock_write.assert_called_once_with('No media files were copied')
 
     @override_settings(FIXTURES=None)
     def test_handle_with_invalid_fixtures_setting_variable(self):

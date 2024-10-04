@@ -5,7 +5,7 @@ from django.core.management import call_command
 from django.test import TestCase, override_settings
 
 
-class TestLoadFixturesCommand(TestCase):
+class TestLoadDataCommand(TestCase):
 
     def setUp(self):
         super().setUp()
@@ -35,10 +35,20 @@ class TestLoadFixturesCommand(TestCase):
         )
         self.mock_base_handle = self.base_handle_patcher.start()
 
-        self.mock_write_patcher = patch(
+        self.write_patcher = patch(
             'django.core.management.base.OutputWrapper.write'
         )
-        self.mock_write = self.mock_write_patcher.start()
+        self.mock_write = self.write_patcher.start()
+
+        self.mocked_copied_files_message = 'Copied files message'
+        self.create_copied_files_message_patcher = patch(
+            'smart_fixtures.management.commands.loaddata'
+            '.create_copied_files_message',
+            return_value=self.mocked_copied_files_message
+        )
+        self.mock_create_copied_files_message = (
+            self.create_copied_files_message_patcher.start()
+        )
 
     @override_settings(FIXTURES={
         'labels': ['portfolio', 'link', 'skill'],
@@ -84,16 +94,9 @@ class TestLoadFixturesCommand(TestCase):
                 os.path.join('path/to/dest2', 'image4.png')
             )
         ])
-        self.mock_write.assert_has_calls([
-            call(
-                'Successfully copied files from '
-                'path/to/src1 to path/to/dest1'
-            ),
-            call(
-                'Successfully copied files from '
-                'path/to/src2 to path/to/dest2'
-            ),
-        ])
+        self.mock_write.assert_called_once_with(
+            self.mocked_copied_files_message
+        )
 
     @override_settings(FIXTURES={
         'labels': ['portfolio', 'link', 'skill'],
@@ -116,8 +119,7 @@ class TestLoadFixturesCommand(TestCase):
         )
         self.mock_copy.assert_not_called()
         self.mock_write.assert_called_once_with(
-            'Successfully copied files from '
-            'path/to/src1 to path/to/dest1'
+            self.mocked_copied_files_message
         )
 
     @override_settings(FIXTURES={
@@ -130,7 +132,9 @@ class TestLoadFixturesCommand(TestCase):
         self.assertEqual(call_args, ('portfolio', 'link', 'skill'))
         self.mock_makedirs.assert_not_called()
         self.mock_copy.assert_not_called()
-        self.mock_write.assert_not_called()
+        self.mock_write.assert_called_once_with(
+            self.mocked_copied_files_message
+        )
 
     @override_settings(FIXTURES=None)
     def test_handle_with_invalid_fixtures_setting_variable(self):
@@ -174,4 +178,5 @@ class TestLoadFixturesCommand(TestCase):
         self.makedirs_patcher.stop()
         self.isfile_patcher.stop()
         self.base_handle_patcher.stop()
-        self.mock_write_patcher.stop()
+        self.write_patcher.stop()
+        self.create_copied_files_message_patcher.stop()

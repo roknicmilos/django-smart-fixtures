@@ -5,6 +5,8 @@ from django.conf import settings
 from django.core.management.commands.loaddata import Command as LoadDataCommand
 from django.db import DEFAULT_DB_ALIAS, connections
 
+from smart_fixtures.utils import create_copied_files_message
+
 
 class Command(LoadDataCommand):
     """
@@ -127,6 +129,7 @@ class Command(LoadDataCommand):
         ))
 
     def _upload_media_files(self):
+        copied_files = []
         for images_dir in settings.FIXTURES.get('media', []):
             src_dir = images_dir['src']
             dest_dir = images_dir['dest']
@@ -139,7 +142,6 @@ class Command(LoadDataCommand):
                 dest_file = os.path.join(dest_dir, filename)
                 if os.path.isfile(src_file):
                     shutil.copy(src_file, dest_file)
+                    copied_files.append((src_file, dest_file))
 
-            self.stdout.write(self.style.SUCCESS(
-                f'Successfully copied files from {src_dir} to {dest_dir}'
-            ))
+        self.stdout.write(create_copied_files_message(copied_files))

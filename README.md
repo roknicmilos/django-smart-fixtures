@@ -4,13 +4,12 @@
 
 ## Purpose
 
-This Django package provides `load_fixtures` management command that allows you
-to **load fixtures in a more convenient way**. It uses Django's built-in
-`loaddata` command under the hood. Unlike `loaddata`, `load_fixtures` allows you
-to load multiple fixtures without passing their labels to the command. The only
-thing you need to do is to configure the fixtures to load in the settings.
-Ah, yes... and it also allows you to **easily upload media files** (images,
-files, etc.) from the fixtures.
+This Django package extends Django's `loaddata` management command allowing you
+to **load fixtures in a more convenient way**. Unlike original `loaddata`,
+this command allows you to load multiple fixtures without passing their labels
+to the command. The only thing you need to do is to configure the fixtures to
+load in the settings. Ah, yes... and it also allows you to **easily upload media
+files** (images, files, etc.) from the fixtures.
 
 ## Installation
 
@@ -20,12 +19,12 @@ pip install django-smart-fixtures
 
 ## Configuration
 
-Add `django_smart_fixtures` to your `INSTALLED_APPS`:
+Add `smart_fixtures` to your `INSTALLED_APPS`:
 
 ```python
 INSTALLED_APPS = [
     ...
-    'django_smart_fixtures',
+    'smart_fixtures',
     ...
 ]
 ```
@@ -80,7 +79,7 @@ Load fixtures configured in the `FIXTURES` settings by running the following
 command:
 
 ```bash
-python manage.py load_fixtures
+python manage.py loaddata --all
 ```
 
 Using the above example, running this command will load all the fixtures defined

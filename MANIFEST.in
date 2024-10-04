@@ -1,8 +1,8 @@
-# Include all files from the django_smart_fixtures package
-graft django_smart_fixtures
+# Include all files from the smart_fixtures package
+graft smart_fixtures
 
 # Exclude the tests file
-exclude django_smart_fixtures/tests.py
+exclude smart_fixtures/tests.py
 
 # Exclude specific directories and files that should not be part of the package
 prune dummy

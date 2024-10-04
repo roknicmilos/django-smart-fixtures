@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django_smart_fixtures',
+    'smart_fixtures',
 
     'dummy',
 ]

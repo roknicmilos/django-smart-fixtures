@@ -151,7 +151,7 @@ class Command(LoadDataCommand):
         self, file_path_pairs: list[tuple[str, str]]
     ) -> None:
         copied_files_display = [
-            f"{index + 1}. {relative_src} -> {relative_dest}\n"
+            f'{index + 1}. {relative_src} -> {relative_dest}\n'
             for index, (relative_src, relative_dest)
             in enumerate([
                 (

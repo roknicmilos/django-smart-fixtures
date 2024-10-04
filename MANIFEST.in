@@ -1,8 +1,8 @@
 # Include all files from the smart_fixtures package
 graft smart_fixtures
 
-# Exclude the tests file
-exclude smart_fixtures/tests.py
+# Exclude the tests directory inside smart_fixtures
+prune smart_fixtures/tests
 
 # Exclude specific directories and files that should not be part of the package
 prune dummy

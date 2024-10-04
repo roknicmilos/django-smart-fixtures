@@ -144,6 +144,8 @@ class Command(LoadDataCommand):
 
         if copied_files:
             self._print_copied_files(copied_files)
+        else:
+            self.stdout.write('No media files to copy')
 
     def _print_copied_files(
         self, file_path_pairs: list[tuple[str, str]]

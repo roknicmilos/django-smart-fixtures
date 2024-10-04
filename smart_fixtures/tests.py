@@ -84,16 +84,12 @@ class TestLoadFixturesCommand(TestCase):
                 os.path.join('path/to/dest2', 'image4.png')
             )
         ])
-        self.mock_write.assert_has_calls([
-            call(
-                'Successfully copied files from '
-                'path/to/src1 to path/to/dest1'
-            ),
-            call(
-                'Successfully copied files from '
-                'path/to/src2 to path/to/dest2'
-            ),
-        ])
+        self.mock_write.assert_called_once_with(
+            'Successfully copied files:\n'
+            '1. path/to/src1/image1.jpg -> path/to/dest1/image1.jpg\n'
+            '2. path/to/src1/image2.png -> path/to/dest1/image2.png\n'
+            '3. path/to/src2/image4.png -> path/to/dest2/image4.png\n'
+        )
 
     @override_settings(FIXTURES={
         'labels': ['portfolio', 'link', 'skill'],
@@ -115,10 +111,7 @@ class TestLoadFixturesCommand(TestCase):
             exist_ok=True
         )
         self.mock_copy.assert_not_called()
-        self.mock_write.assert_called_once_with(
-            'Successfully copied files from '
-            'path/to/src1 to path/to/dest1'
-        )
+        self.mock_write.assert_called_once_with('No media files to copy')
 
     @override_settings(FIXTURES={
         'labels': ['portfolio', 'link', 'skill'],
@@ -130,7 +123,7 @@ class TestLoadFixturesCommand(TestCase):
         self.assertEqual(call_args, ('portfolio', 'link', 'skill'))
         self.mock_makedirs.assert_not_called()
         self.mock_copy.assert_not_called()
-        self.mock_write.assert_not_called()
+        self.mock_write.assert_called_once_with('No media files to copy')
 
     @override_settings(FIXTURES=None)
     def test_handle_with_invalid_fixtures_setting_variable(self):

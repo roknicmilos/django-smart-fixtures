@@ -127,6 +127,7 @@ class Command(LoadDataCommand):
         ))
 
     def _upload_media_files(self):
+        copied_files = []
         for images_dir in settings.FIXTURES.get('media', []):
             src_dir = images_dir['src']
             dest_dir = images_dir['dest']
@@ -139,7 +140,33 @@ class Command(LoadDataCommand):
                 dest_file = os.path.join(dest_dir, filename)
                 if os.path.isfile(src_file):
                     shutil.copy(src_file, dest_file)
+                    copied_files.append((src_file, dest_file))
 
-            self.stdout.write(self.style.SUCCESS(
-                f'Successfully copied files from {src_dir} to {dest_dir}'
-            ))
+        if copied_files:
+            self._print_copied_files(copied_files)
+
+    def _print_copied_files(
+        self, file_path_pairs: list[tuple[str, str]]
+    ) -> None:
+        copied_files_display = [
+            f"{index + 1}. {relative_src} -> {relative_dest}\n"
+            for index, (relative_src, relative_dest)
+            in enumerate([
+                (
+                    self._get_relative_path(src),
+                    self._get_relative_path(dest)
+                ) for src, dest in file_path_pairs
+            ])
+        ]
+        self.stdout.write(
+            f'Successfully copied files:\n{"".join(copied_files_display)}'
+        )
+
+    @staticmethod
+    def _get_relative_path(absolute_path: str) -> str:
+        relative_path = absolute_path.replace(str(settings.BASE_DIR), '')
+        return (
+            relative_path[1:]
+            if relative_path.startswith('/')
+            else relative_path
+        )

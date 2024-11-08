@@ -31,7 +31,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.10"
 Django = ">=4.0,<6.0"
-pillow = "^10.4.0"
+pillow = "^11.0.0"
 pyyaml = "^6.0.2"
 
 [tool.poetry.group.dev.dependencies]
